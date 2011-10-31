@@ -1,0 +1,121 @@
+<html>
+
+<head>
+  <title></title>
+
+<style>
+pre {background-color:#D9E9FF;padding:1ex;color:#222;}
+pre .c {color:#B11D1D;font-weight:bold;}
+.xmn {background-color: #D9E9FF;color: #222222;font-family: Helvetica;font-size: 14px;padding: 0 0.5ex;}
+.gmn {line-height:18px;}
+</style>
+
+</head>
+
+<body>
+
+<h3>Данный способ наименования классов необходим для упрошения создания уникальных имен класса.</h3>
+
+<div class="gmn"><span class="xmn">префикс</span>-<span class="xmn">имя_обьекта</span>-<span class="xmn">имя_элемената_в_обьекте</span></div>
+<div class="gmn"><span class="xmn">префикс</span>-<span class="xmn">имя_обьекта</span>-<span class="xmn">имя_элемената_в_обьекте</span>--<span class="xmn">флаг_состояния</span></div>
+<div class="gmn"><span class="xmn">префикс</span>-<span class="xmn">имя_обьекта</span>-<span class="xmn">имя_элемената_в_обьекте</span>--<span class="xmn">параметр</span>-<span class="xmn">значение</span></div>
+
+
+<pre>
+
+<font size="2" face="Courier New" color="black">&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта b-имя_обьекта--имя_флага"</font>&#62;
+&nbsp;&nbsp;&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта-имя_элемената"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта-name b-имя_обьекта-name--red"</font>&#62;текст текст&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта-time"</font>&#62;10:30&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div&#62;
+
+&nbsp;&nbsp;&#60;p <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта-box"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/p&#62;
+&nbsp;&nbsp;&#60;/div&#62;
+</font>
+</pre>
+
+"<b>b-</b>" - префикс класса. Он нужен. Префикс это "подсветка кода". Предпологается что имя класса без префикса обязательно должен быт связан с родительским элеиментом у которого он есть. Также префикс символизирует что имя созданно по особому принципу и выделяет такие имена среди других техник. Префикс несет только дополнительную смысловую нагрузку и дает подсказку на вопрос "откуда этот класс?".<br>
+<br>
+"b-" - описание каркаса<br>
+"m-" - этот модификатор аналог "b-" но полученный от родительского обьекта.<br>
+"s-" - модификатор стилизации. вся стилизация проекта задается этими классами. <br>
+"i-" - прочии модификаторы: фона(картинка), ...<br>
+<br>
+<b>имя_обьекта</b> - это обьект который верстаем.<br>
+<b>имя_элемената</b> - это название элемената обьекта.<br>
+<br>
+Имена пишуться или одним словом или через нижнее_подчеркивание или горбатымСтилем.<br>
+Разделителем между префиксом, имя_обьекта и имя_элемента выступает знак дефиса "<b>-</b>".<br>
+Делать иерархию из имен не стоит. те так делать не стоит <b>b-имя_обьекта-имя_элемената-name</b>, лучше назвать как то по другому или <b>b-имя_обьекта-имя_элемената_Name</b>. <br>
+
+<br>
+<b>Флаги</b> это класс состояния элемента.  Класс имеет вид "имя_элемент<b>--имя_флага</b>". <br>
+Имя флага можно записать или одним словом или через нижнее_подчеркивание или горбатымСтилем.<br>
+
+Сложные имена флагов разделяются одним знаком дефиса "<b>-</b>" и имеют вид "<b>--параметр-значение</b>"<br>
+<br>
+<b>Модификатор</b> - класс который относиться к другому обьекту, но добавлен чтобы изменить свойства элемента. к примеру "b-ubutton-text m-pageform-remove_text b-ubutton-text--small" : "b-ubutton-text" это элемент, "b-ubutton-text--small" это состояние элемнета , "m-pageform-remove_text" - модификатор который относиться к обьекту "pageform"<br/>
+
+
+<br>
+<br>
+в теории можно добиться сжатие имен (замена имени класа на компактный аналог: "b-имя_обьекта-имя_элемената" -&gt; "zW4").<br>
+эффективнось сжатия сомнительна, потому как по отношению к gzip выигрыш незначительный. но такая возможность есть.<br>
+<br>
+Для автоматизации "сжатия" и отличать что можно сжимать а какие классы нельзя можно воспользоваться префиксами:<br>
+одно буквенный префикс "<b>b-</b>" говорит что имя_класса можно сжимать<br>
+двух буквенный префикс "<b>bb-</b>" сжимать не рекомендуется. Но возможна частичное сжатие "<u>bb-имя_обьекта</u>-незжимаемая_часть"<br>
+<br>
+
+<hr>
+<br>
+Альтернатива для случия когда [--] использовать нельзя (идея из bem )
+
+<pre>
+<font size="2" face="Courier New" color="black">&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта b-имя_обьекта-имя_флага"</font>&#62;
+&nbsp;&nbsp;&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__имя_элемената"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__name b-имя_обьекта__name-red"</font>&#62;текст текст&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__time"</font>&#62;10:30&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div&#62;
+
+&nbsp;&nbsp;&#60;p <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__box"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/p&#62;
+&nbsp;&nbsp;&#60;/div&#62;
+</font>
+</pre>
+
+
+<br>
+<br>
+Еще одна альтернатива для случия когда [--] использовать можно :)
+
+<pre>
+<font size="2" face="Courier New" color="black">&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта b-имя_обьекта--имя_флага"</font>&#62;
+&nbsp;&nbsp;&#60;div <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__имя_элемената"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__name b-имя_обьекта__name--red"</font>&#62;текст текст&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;span <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__time"</font>&#62;10:30&#60;/span&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div&#62;
+
+&nbsp;&nbsp;&#60;p <font color="#0000ff">class</font>=<font color="#A31515">"b-имя_обьекта__box"</font>&#62;
+&nbsp;&nbsp;&nbsp;&nbsp;&#60;/p&#62;
+&nbsp;&nbsp;&#60;/div&#62;
+</font>
+</pre>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2058396-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</body>
+
+</html>
